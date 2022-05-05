@@ -15,6 +15,7 @@ import argparse
 import paramiko
 import timeit
 import random 
+import time
 
 username = "user"
 password = "1qaz@WSX"
