@@ -98,7 +98,7 @@ def RemoteClient(hostname, commands):
         start_time = timeit.default_timer()
         stdin, stdout, stderr = ssh.exec_command(command, get_pty=True)
         print(f'Execution time of the Command {i+1}: {timeit.default_timer()-start_time} seconds')
-        #time.sleep(1)
+        time.sleep(1)
         print(stdout.read().decode())
         err = stderr.read().decode()
         if err:
