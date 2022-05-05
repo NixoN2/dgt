@@ -94,6 +94,7 @@ def RemoteClient(hostname, commands):
 
     for i, command in enumerate(commands):
         print("Executing the Command {i}".format(i=i+1))
+        print("Command {i}".format(i=i+1))
         start_time = timeit.default_timer()
         stdin, stdout, stderr = ssh.exec_command(command, get_pty=True)
         print(f'Execution time of the Command {i+1}: {timeit.default_timer()-start_time} seconds')
