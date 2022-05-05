@@ -28,7 +28,8 @@ def ParseArgs(args=sys.argv[1:]):
     """Parse arguments"""
 
     parser = argparse.ArgumentParser(description=sys.modules[__name__].__doc__, formatter_class=CustomFormatter)
-
+   
+    parser.add_argument('transactions', type=int, help='Transactions number')
     parser.add_argument('cluster', type=int, help='Cluster number')
     parser.add_argument('node', type=int, help='Node number')
 
@@ -128,7 +129,7 @@ def Main():
     """Main"""
 
     option = ParseArgs()
-
+    
     try:
         cluster_node = str(option.cluster) + str(option.node)
         hostname = topology_hosts[topology_nodes.index(cluster_node)]
@@ -136,8 +137,10 @@ def Main():
     except:
         print("[!] Cannot find node in topology")
         exit()
-
-    commands = CreateCommands(option.cluster, option.node, option.function, option.number, option.wallet, option.count, option.wallet2)
+    
+    commands = []
+    for i in range(0,option.transactions):
+        commands.append(CreateCommands(option.cluster, option.node, option.function, option.number, option.wallet, option.count, option.wallet2))
     #print(commands)
 
     RemoteClient(hostname, commands)
