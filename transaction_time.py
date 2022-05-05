@@ -14,12 +14,15 @@ import sys
 import argparse
 import paramiko
 import timeit
+import random 
 
 username = "user"
 password = "1qaz@WSX"
 topology_nodes = ["11", "12", "21"]
 topology_hosts = ["172.27.216.143", "172.27.216.149", "172.22.216.173"]
-
+wallets = ["wal11","wal12","wal13","wal21","wal22"]
+possible_nodes = [1,2]
+possible_clusters = [1]
 
 class CustomFormatter(argparse.RawDescriptionHelpFormatter, argparse.ArgumentDefaultsHelpFormatter):
     pass
@@ -80,7 +83,7 @@ def TransWallet(cluster, node, from_wallet, count, to_wallet):
 
 def RemoteClient(hostname, commands):
     """Connect to SSH Server"""
-    print(commands)
+
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     try:
@@ -140,7 +143,7 @@ def Main():
     
     commands = []
     for i in range(0,option.transactions):
-        commands.append(CreateCommands(option.cluster, option.node, option.function, option.number, option.wallet, option.count, option.wallet2)[0])
+        commands.append(CreateCommands(random.choice(possible_clusters), random.choice(possible_nodes), "trans", random.randint(2,500), random.choice(wallets), random.randint(3,1000), random.choice(wallets))[0])
     #print(commands)
 
     RemoteClient(hostname, commands)
