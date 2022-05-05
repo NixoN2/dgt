@@ -140,7 +140,7 @@ def Main():
     
     commands = []
     for i in range(0,option.transactions):
-        commands.append(CreateCommands(option.cluster, option.node, option.function, option.number, option.wallet, option.count, option.wallet2))
+        commands.append(CreateCommands(option.cluster, option.node, option.function, option.number, option.wallet, option.count, option.wallet2)[0])
     #print(commands)
 
     RemoteClient(hostname, commands)
