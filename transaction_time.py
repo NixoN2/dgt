@@ -21,7 +21,7 @@ password = "1qaz@WSX"
 topology_nodes = ["11", "12", "21"]
 topology_hosts = ["172.27.216.143", "172.27.216.149", "172.22.216.173"]
 wallets = ["wal11","wal12","wal13","wal21","wal22"]
-possible_nodes = [1,2]
+possible_nodes = [1,3]
 possible_clusters = [1]
 
 class CustomFormatter(argparse.RawDescriptionHelpFormatter, argparse.ArgumentDefaultsHelpFormatter):
