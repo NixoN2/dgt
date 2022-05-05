@@ -80,7 +80,7 @@ def TransWallet(cluster, node, from_wallet, count, to_wallet):
 
 def RemoteClient(hostname, commands):
     """Connect to SSH Server"""
-
+    print(commands)
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     try:
