@@ -31,11 +31,11 @@ for i in range(wallet_number):
     wallets.append(f"wal{i}")
 
 for wallet in wallets:
-    os.exec(f"{prefix} -f set -w {wallet} -c {random.randint(100,10000)}")
+    os.system(f"{prefix} -f set -w {wallet} -c {random.randint(100,10000)}")
 
 functions = ["inc","trans","dec"]
 
 for i in range(n):
-    os.exec(create_command(functions,prefix,wallets))
+    os.system(create_command(functions,prefix,wallets))
 
 
