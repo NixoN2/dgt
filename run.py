@@ -3,10 +3,9 @@ import os
 import sys
 
 def create_command(functions,prefix,wallets):
-    new_wallets = random.shuffle([wallet for wallet in wallets])
-    print(new_wallets)
-    random_wallet_1 = new_wallets[0]
-    random_wallet_2 = new_wallets[1]
+    random.shuffle(wallets)
+    random_wallet_1 = wallets[0]
+    random_wallet_2 = wallets[1]
     random_command = random.choice(functions)
     random_value = random.randint(1,1000)
     if random_command == "inc":
