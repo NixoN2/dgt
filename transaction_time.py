@@ -1,16 +1,3 @@
-# import os
-# import sys
-# import timeit
-
-# if __name__ == "__main__":
-#     command = ""
-#     for i, arg in enumerate(sys.argv):
-#         if i > 0:
-#             command += arg + " "
-    # start_time = timeit.default_timer()
-    # os.system(command)
-    # print(f'execution time: {timeit.default_timer()-start_time} seconds')
-
 #!/usr/bin/python
 """Simple script generator
 This script generates a transaction on a specific node
@@ -105,7 +92,7 @@ def RemoteClient(hostname, commands):
         print("Executing the Command {i}".format(i=i+1))
         start_time = timeit.default_timer()
         stdin, stdout, stderr = ssh.exec_command(command, get_pty=True)
-        print(f'Execution time of the Command {i}: {timeit.default_timer()-start_time} seconds')
+        print(f'Execution time of the Command {i+1}: {timeit.default_timer()-start_time} seconds')
         #time.sleep(1)
         print(stdout.read().decode())
         err = stderr.read().decode()
