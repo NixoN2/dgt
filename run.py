@@ -19,7 +19,7 @@ def create_command(functions,prefix,wallets):
 
 cluster = sys.argv[1]
 node = sys.argv[2]
-n = sys.argv[3]
+n = int(sys.argv[3])
 
 prefix = f"python3 transaction_time.py {cluster} {node}"
 
@@ -31,7 +31,7 @@ for i in range(wallet_number):
     wallets.append(f"wal{i}")
 
 for wallet in wallets:
-    os.exec(f"{prefix} -f set {wallet} {random.randint(100,10000)}")
+    os.exec(f"{prefix} -f set -w {wallet} -c {random.randint(100,10000)}")
 
 functions = ["inc","trans","dec"]
 
