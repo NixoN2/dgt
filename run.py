@@ -59,12 +59,14 @@ os.system(f"docker container pause {process}")
 
 for i in range(n):
     choice = random.choice(prefixes)
-    print(choice, prefixes.index(choice), port_to_close-1)
     command = create_command(functions,choice,wallets)
     commands.append(command)
     if prefixes.index(choice) != port_to_close - 1:
         commands_for_closed_port.append(command)
     
+print(port_to_close)
+print(commands_for_closed_port)
+
 for i in range(n):
     os.system(commands[i])
 
