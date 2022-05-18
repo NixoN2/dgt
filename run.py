@@ -2,6 +2,8 @@ import random
 import os
 import sys
 
+ports = [8108,8109,8110]
+
 def create_command(functions,prefix,wallets):
     random.shuffle(wallets)
     random_wallet_1 = wallets[0]
@@ -46,7 +48,14 @@ for prefix in prefixes:
 
 functions = ["inc","trans","dec"]
 
+commands = []
+
 for i in range(n):
-    os.system(create_command(functions,random.choice(prefixes),wallets))
+    commands.append(create_command(functions,random.choice(prefixes),wallets))
+    
+for i in range(n):
+    os.system(commands[i])
 
+port_to_close = random.choice(ports)
 
+print(os.system(f'docker ps -aqf "name=api-dgt-c1-1"'))
