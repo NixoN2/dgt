@@ -55,7 +55,6 @@ port_to_close = random.choice(ports)
 
 process = os.popen(f'docker ps -aqf "name=validator-dgt-c1-{port_to_close}"').read()
 
-os.system(f"docker container pause {process}")
 
 for i in range(n):
     choice = random.choice(prefixes)
@@ -69,6 +68,9 @@ print(commands_for_closed_port)
 
 for i in range(n):
     os.system(commands[i])
+
+os.system(f"docker container pause {process}")
+
 
 for i in range(len(commands_for_closed_port)):
     os.system(commands_for_closed_port[i])
