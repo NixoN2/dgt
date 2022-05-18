@@ -61,7 +61,7 @@ for i in range(n):
     choice = random.choice(prefixes)
     command = create_command(functions,choice,wallets)
     commands.append(command)
-    if prefixes.index(choice) != port_to_close - 1:
+    if not choice.endswith(str(port_to_close)):
         commands_for_closed_port.append(command)
     
 print(port_to_close)
