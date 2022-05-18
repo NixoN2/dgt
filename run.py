@@ -58,7 +58,7 @@ for i in range(n):
 
 port_to_close = random.choice(ports)
 
-process = os.popen(f'docker ps -aqf "name=api-dgt-c1-{port_to_close}"').read()
+process = os.popen(f'docker ps -aqf "validator=api-dgt-c1-{port_to_close}"').read()
 
 os.system(f"docker container pause {process}")
 
