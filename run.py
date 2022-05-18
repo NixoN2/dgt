@@ -63,9 +63,6 @@ for i in range(n):
     if not choice.endswith(str(port_to_close)):
         commands_for_closed_port.append(command)
     
-print(port_to_close)
-print(commands_for_closed_port)
-
 for i in range(n):
     os.system(commands[i])
 
