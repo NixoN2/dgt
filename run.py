@@ -68,7 +68,7 @@ for i in range(n):
 for i in range(n):
     os.system(commands[i])
 
-for i in range(n):
+for i in range(len(commands_for_closed_port)):
     os.system(commands_for_closed_port[i])
 
 os.system(f"docker container unpause {process}")
