@@ -49,12 +49,7 @@ for prefix in prefixes:
 functions = ["inc","trans","dec"]
 
 commands = []
-
-for i in range(n):
-    commands.append(create_command(functions,random.choice(prefixes),wallets))
-    
-for i in range(n):
-    os.system(commands[i])
+commands_for_closed_port = []
 
 port_to_close = random.choice(ports)
 
@@ -63,7 +58,17 @@ process = os.popen(f'docker ps -aqf "name=validator-dgt-c1-{port_to_close}"').re
 os.system(f"docker container pause {process}")
 
 for i in range(n):
+    choice = random.choice(prefixes)
+    command = create_command(functions,choice,wallets)
+    commands.append(command)
+    if prefixes.index(choice) != port_to_close - 1:
+        commands_for_closed_port.append(command)
+    
+for i in range(n):
     os.system(commands[i])
+
+for i in range(n):
+    os.system(commands_for_closed_port[i])
 
 os.system(f"docker container unpause {process}")
 
