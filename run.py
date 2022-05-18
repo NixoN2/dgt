@@ -2,7 +2,7 @@ import random
 import os
 import sys
 
-ports = [8108,8109,8110]
+ports = [1,2,3]
 
 def create_command(functions,prefix,wallets):
     random.shuffle(wallets)
@@ -58,4 +58,12 @@ for i in range(n):
 
 port_to_close = random.choice(ports)
 
-print(os.popen(f'docker ps -aqf "name=api-dgt-c1-1"').read())
+process = os.popen(f'docker ps -aqf "name=api-dgt-c1-{port_to_close}"').read()
+
+os.system(f"docker container pause {process}")
+
+for i in range(n):
+    os.system(commands[i])
+
+os.system(f"docker container unpause {process}")
+
