@@ -58,4 +58,4 @@ for i in range(n):
 
 port_to_close = random.choice(ports)
 
-print(os.system(f'docker ps -aqf "name=api-dgt-c1-1"'))
+print(os.popen(f'docker ps -aqf "name=api-dgt-c1-1"').read())
