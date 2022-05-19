@@ -2,7 +2,15 @@ import random
 import os
 import sys
 
-ports = [1,2,3]
+ports = [4104,4106,4107,4108,4109,4110,
+4204,4206,4207,4208,4209,4210,
+4304,4306,4307,
+4404,4406,4407,
+4504,4506,4507,
+4604,4606,4607]
+
+clusters = [1,2,3,4,5,6]
+nodes = [1,2,3,4,5,6]
 
 def create_command(functions,prefix,wallets):
     random.shuffle(wallets)
@@ -17,21 +25,18 @@ def create_command(functions,prefix,wallets):
     elif random_command == "trans":
         return f"{prefix} -f trans -w {random_wallet_1} -c {random_value} -w2 {random_wallet_2}"
 
-
-
-cluster = sys.argv[1]
-node = sys.argv[2]
 n = int(sys.argv[3])
-max_node = int(sys.argv[4])
+nodes_to_down = int(sys.argv[4])
 
-nodes = []
-for i in range(1,max_node+1):
-    nodes.append(i)
 
 prefixes = []
 
-for i in nodes:
-    prefixes.append(f"python3 transaction_time.py {cluster} {i}")
+for i in clusters:
+    for j in nodes:
+        if i in [3,4,5,6]:
+            if j > 3:
+                continue
+        prefixes.append(f"python3 transaction_time.py {cluster} {i}")
 
 #prefix = f"python3 transaction_time.py {cluster} {node}"
 
@@ -49,28 +54,27 @@ for prefix in prefixes:
 functions = ["inc","trans","dec"]
 
 commands = []
-commands_for_closed_port = []
+#commands_for_closed_port = []
 
-port_to_close = random.choice(ports)
-
-process = os.popen(f'docker ps -aqf "name=validator-dgt-c1-{port_to_close}"').read()
-
+ports_to_close = random.sample(porst,nodes_to_down)
 
 for i in range(n):
     choice = random.choice(prefixes)
     command = create_command(functions,choice,wallets)
     commands.append(command)
-    if not choice.endswith(str(port_to_close)):
-        commands_for_closed_port.append(command)
     
 for i in range(n):
     os.system(commands[i])
 
-os.system(f"docker container pause {process}")
+for i in ports_to_close:
+    os.system(f"sudo /sbin/iptables -A DOCKER -p tcp --destination-port {i} -j DROP")
 
+os.system(f"sudo /sbin/iptables-save")
 
-for i in range(len(commands_for_closed_port)):
-    os.system(commands_for_closed_port[i])
+for i in range(n):
+    os.system(commands)
 
-os.system(f"docker container unpause {process}")
+for i in ports_to_close:
+    os.system(f"sudo /sbin/iptables -A DOCKER -p tcp --destination-port {i} -j ACCEPT")
 
+os.system(f"sudo /sbin/iptables-save")

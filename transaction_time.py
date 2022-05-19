@@ -17,7 +17,13 @@ import timeit
 
 username = "user"
 password = "1qaz@WSX"
-topology_nodes = ["11", "12", "13"]
+topology_nodes = ["11", "12", "13","14","15","16",
+"21","22","23","24","25","26",
+"31","32","33","34",
+"41","42","43","44",
+"51","52","53","54",
+"61","62","63","64"]
+
 topology_hosts = ["172.27.216.143", "172.27.216.143", "172.27.216.143"]
 
 
@@ -132,7 +138,7 @@ def Main():
 
     try:
         cluster_node = str(option.cluster) + str(option.node)
-        hostname = topology_hosts[topology_nodes.index(cluster_node)]
+        hostname = "172.27.216.143"
         #print(hostname)
     except:
         print("[!] Cannot find node in topology")
