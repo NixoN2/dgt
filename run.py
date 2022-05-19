@@ -40,7 +40,7 @@ for i in clusters:
 
 #prefix = f"python3 transaction_time.py {cluster} {node}"
 
-wallet_number = random.randint(1, n) % 15
+wallet_number = random.randint(1, n) % 5
 
 wallets = []
 
@@ -56,7 +56,7 @@ functions = ["inc","trans","dec"]
 commands = []
 #commands_for_closed_port = []
 
-ports_to_close = random.sample(porst,nodes_to_down)
+ports_to_close = random.sample(ports,nodes_to_down)
 
 for i in range(n):
     choice = random.choice(prefixes)
