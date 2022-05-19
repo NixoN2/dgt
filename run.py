@@ -40,7 +40,7 @@ for i in clusters:
 
 #prefix = f"python3 transaction_time.py {cluster} {node}"
 
-wallet_number = random.randint(1, n) % 6
+wallet_number = random.randint(3, n) % 6
 
 wallets = []
 
