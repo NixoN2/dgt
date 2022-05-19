@@ -25,8 +25,8 @@ def create_command(functions,prefix,wallets):
     elif random_command == "trans":
         return f"{prefix} -f trans -w {random_wallet_1} -c {random_value} -w2 {random_wallet_2}"
 
-n = int(sys.argv[3])
-nodes_to_down = int(sys.argv[4])
+n = int(sys.argv[1])
+nodes_to_down = int(sys.argv[2])
 
 
 prefixes = []
