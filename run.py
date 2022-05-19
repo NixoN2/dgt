@@ -56,6 +56,7 @@ functions = ["inc","trans","dec"]
 commands = []
 #commands_for_closed_port = []
 
+
 ports_to_close = random.sample(ports,nodes_to_down)
 
 for i in range(n):
@@ -72,9 +73,11 @@ for i in ports_to_close:
 os.system(f"sudo /sbin/iptables-save")
 
 for i in range(n):
-    os.system(commands)
+    os.system(commands[i])
 
 for i in ports_to_close:
     os.system(f"sudo /sbin/iptables -A DOCKER -p tcp --destination-port {i} -j ACCEPT")
 
 os.system(f"sudo /sbin/iptables-save")
+
+print(random.sample(ports,0))
