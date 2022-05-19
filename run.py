@@ -36,7 +36,7 @@ for i in clusters:
         if i in [3,4,5,6]:
             if j > 3:
                 continue
-        prefixes.append(f"python3 transaction_time.py {cluster} {i}")
+        prefixes.append(f"python3 transaction_time.py {i} {j}")
 
 #prefix = f"python3 transaction_time.py {cluster} {node}"
 
