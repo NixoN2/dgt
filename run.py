@@ -40,7 +40,7 @@ for i in clusters:
 
 #prefix = f"python3 transaction_time.py {cluster} {node}"
 
-wallet_number = random.randint(1, n) % 5
+wallet_number = random.randint(1, n) % 6
 
 wallets = []
 
@@ -80,4 +80,3 @@ for i in ports_to_close:
 
 os.system(f"sudo /sbin/iptables-save")
 
-print(random.sample(ports,0))
