@@ -67,6 +67,8 @@ for i in range(n):
 for i in range(n):
     os.system(commands[i])
 
+print(f"tttttttttttttttttttest: {os.popen(f'{commands[0]}').read()}")
+
 for i in ports_to_close:
     os.system(f"sudo /sbin/iptables -A DOCKER -p tcp --destination-port {i} -j DROP")
 
@@ -75,8 +77,13 @@ os.system(f"sudo /sbin/iptables-save")
 for i in range(n):
     os.system(commands[i])
 
+
+
 for i in ports_to_close:
     os.system(f"sudo /sbin/iptables -A DOCKER -p tcp --destination-port {i} -j ACCEPT")
+
+#for i in range(len(ports_to_close)*2+1):
+#    os.system(f"sudo /sbin/iptables -D DOCKER 73")
 
 os.system(f"sudo /sbin/iptables-save")
 
