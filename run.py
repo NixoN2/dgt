@@ -1,6 +1,9 @@
 import random
 import os
 import sys
+from datetime import date
+
+today = date.today()
 
 ports = [4104,4106,4107,4108,4109,4110,
 4204,4206,4207,4208,4209,4210,
@@ -63,27 +66,59 @@ for i in range(n):
     choice = random.choice(prefixes)
     command = create_command(functions,choice,wallets)
     commands.append(command)
+
+with open('results.txt', 'w') as f:
+    text = ""
+    time = 0
+    for i in range(n):
+        content = os.popen(commands[i])
+        for j in content.readlines():
+            if j.startswith("Execution time"):
+                time += float(j.split()[6])
+            text += j
+
+    f.write("--------------------------------------------\n")
+    f.write(f"date: {today}\n")
+    f.write(f"nodes: 24\n")
+    f.write(f"nodes down: 4\n")
+    f.write(f"time: {time} seconds\n")
+    f.write("--------------------------------------------\n")
+    f.write(text)   
+    f.write(f"-------------------------------------------\n")
+    f.write(f"Ports closed\n")
+    f.write(f"-------------------------------------------\n")
+    #for i in range(n):
+    #    os.system(commands[i])
+
+    #print(f"tttttttttttttttttttest: {os.popen(f'{commands[0]}').read()}")
+
+    for i in ports_to_close:
+        os.system(f"sudo /sbin/iptables -A DOCKER -p tcp --destination-port {i} -j DROP")
+
+    os.system(f"sudo /sbin/iptables-save")
     
-for i in range(n):
-    os.system(commands[i])
 
-print(f"tttttttttttttttttttest: {os.popen(f'{commands[0]}').read()}")
+    text = ""
+    time = 0
+    for i in range(n):
+        content = os.popen(commands[i])
+        for j in content.readlines():
+            if j.startswith("Execution time"):
+                time += float(j.split()[6])
+            text += j
+            
+    #for i in range(n):
+    #    os.system(commands[i])
+    f.write(text)   
 
-for i in ports_to_close:
-    os.system(f"sudo /sbin/iptables -A DOCKER -p tcp --destination-port {i} -j DROP")
 
-os.system(f"sudo /sbin/iptables-save")
+    for i in ports_to_close:
+        os.system(f"sudo /sbin/iptables -A DOCKER -p tcp --destination-port {i} -j ACCEPT")
 
-for i in range(n):
-    os.system(commands[i])
+    #for i in range(len(ports_to_close)*2+1):
+    #    os.system(f"sudo /sbin/iptables -D DOCKER 73")
+
+    os.system(f"sudo /sbin/iptables-save")
 
 
-
-for i in ports_to_close:
-    os.system(f"sudo /sbin/iptables -A DOCKER -p tcp --destination-port {i} -j ACCEPT")
-
-#for i in range(len(ports_to_close)*2+1):
-#    os.system(f"sudo /sbin/iptables -D DOCKER 73")
-
-os.system(f"sudo /sbin/iptables-save")
 

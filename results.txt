@@ -1,0 +1,56 @@
+--------------------------------------------
+date: 2022-05-20
+nodes: 24
+nodes down: 4
+time: 1.2199999999999998 seconds
+--------------------------------------------
+command: 1
+Execution time of the Command {i+1}: 0.122 seconds
+{
+	link: 'block42142145215215821958129'
+}
+command: 1
+Execution time of the Command {i+1}: 0.122 seconds
+{
+	link: 'block42142145215215821958129'
+}
+command: 1
+Execution time of the Command {i+1}: 0.122 seconds
+{
+	link: 'block42142145215215821958129'
+}
+command: 1
+Execution time of the Command {i+1}: 0.122 seconds
+{
+	link: 'block42142145215215821958129'
+}
+command: 1
+Execution time of the Command {i+1}: 0.122 seconds
+{
+	link: 'block42142145215215821958129'
+}
+command: 1
+Execution time of the Command {i+1}: 0.122 seconds
+{
+	link: 'block42142145215215821958129'
+}
+command: 1
+Execution time of the Command {i+1}: 0.122 seconds
+{
+	link: 'block42142145215215821958129'
+}
+command: 1
+Execution time of the Command {i+1}: 0.122 seconds
+{
+	link: 'block42142145215215821958129'
+}
+command: 1
+Execution time of the Command {i+1}: 0.122 seconds
+{
+	link: 'block42142145215215821958129'
+}
+command: 1
+Execution time of the Command {i+1}: 0.122 seconds
+{
+	link: 'block42142145215215821958129'
+}

@@ -1,0 +1,5 @@
+print("command: 1")
+print("Execution time of the Command {i+1}: 0.122 seconds")
+print("{")
+print("\tlink: 'block42142145215215821958129'")
+print("}")
