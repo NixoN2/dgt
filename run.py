@@ -80,7 +80,7 @@ with open(f'results{nodes_to_down+100}.txt', 'w') as f:
         print(i)
         for j in content.readlines():
             if j.startswith("Execution time"):
-                time += float(j.split()[6])
+                time += float(j.split()[5])
             text += j
 
     f.write("--------------------------------------------\n")
@@ -107,7 +107,7 @@ with open(f'results{nodes_to_down+100}.txt', 'w') as f:
         print(i)
         for j in content.readlines():
             if j.startswith("Execution time"):
-                time += float(j.split()[6])
+                time += float(j.split()[5])
             text += j
 
     f.write(text)   
