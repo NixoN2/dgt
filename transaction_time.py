@@ -148,7 +148,7 @@ def Main():
     #print(commands)
     start_time = timeit.default_timer()
     RemoteClient(hostname, commands)
-    print(f'Execution time of the Command {i+1}: {timeit.default_timer()-start_time} seconds')
+    print(f'Execution time of the Command: {timeit.default_timer()-start_time} seconds')
 
 if __name__ == '__main__':
     Main()
