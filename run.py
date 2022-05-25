@@ -41,7 +41,7 @@ for i in clusters:
                 continue
         prefixes.append(f"python3 transaction_time.py {i} {j}")
 
-wallet_number = random.randint(6, n) % 20
+wallet_number = random.randint(1, n) % 20 + 5
 
 wallets = []
 
