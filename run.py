@@ -86,7 +86,7 @@ with open(f'results{nodes_to_down}.txt', 'w') as f:
     f.write(f"-------------------------------------------\n")
 
     for i in ports_to_close:
-        os.system(f"sudo /sbin/iptables -A DOCKER -p tcp --destination-port {i} -j DROP")
+        os.system(f"sudo /sbin/iptables -A OUTPUT -o eth0 -p tcp --dport {i} -j DROP")
 
     os.system(f"sudo /sbin/iptables-save")
     
@@ -110,11 +110,13 @@ with open(f'results{nodes_to_down}.txt', 'w') as f:
     f.write(f"time: {time} seconds\n")
     f.write("--------------------------------------------\n")
 
-    for i in ports_to_close:
-        os.system(f"sudo /sbin/iptables -A DOCKER -p tcp --destination-port {i} -j ACCEPT")
+    # for i in ports_to_close:
+    #     os.system(f"sudo /sbin/iptables -A DOCKER -p tcp --destination-port {i} -j ACCEPT")
 
-    for i in range(len(ports_to_close)*2+1):
-        os.system(f"sudo /sbin/iptables -D DOCKER 73")
+    # for i in range(len(ports_to_close)*2+1):
+    #     os.system(f"sudo /sbin/iptables -D DOCKER 73")
+    for i in range(len(ports_to_close)):
+        os.system(f"sudo /sbin/iptables -D OUTPUT 1")
 
     os.system(f"sudo /sbin/iptables-save")
 
