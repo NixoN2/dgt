@@ -41,8 +41,6 @@ for i in clusters:
                 continue
         prefixes.append(f"python3 transaction_time.py {i} {j}")
 
-#prefix = f"python3 transaction_time.py {cluster} {node}"
-
 wallet_number = random.randint(3, n) % 10
 
 wallets = []
@@ -57,8 +55,6 @@ for prefix in prefixes:
 functions = ["inc","trans","dec"]
 
 commands = []
-#commands_for_closed_port = []
-
 
 ports_to_close = random.sample(ports,nodes_to_down)
 
@@ -67,7 +63,7 @@ for i in range(n):
     command = create_command(functions,choice,wallets)
     commands.append(command)
 
-with open('results.txt', 'w') as f:
+with open(f'results{nodes_to_down}.txt', 'w') as f:
     text = ""
     time = 0
     for i in range(n):
@@ -87,10 +83,6 @@ with open('results.txt', 'w') as f:
     f.write(f"-------------------------------------------\n")
     f.write(f"Ports closed\n")
     f.write(f"-------------------------------------------\n")
-    #for i in range(n):
-    #    os.system(commands[i])
-
-    #print(f"tttttttttttttttttttest: {os.popen(f'{commands[0]}').read()}")
 
     for i in ports_to_close:
         os.system(f"sudo /sbin/iptables -A DOCKER -p tcp --destination-port {i} -j DROP")
@@ -107,16 +99,17 @@ with open('results.txt', 'w') as f:
                 time += float(j.split()[6])
             text += j
             
-    #for i in range(n):
-    #    os.system(commands[i])
+    text+= "-------------------------------------"
+    text+= os.popen(f"curl -v localhost:8108/blocks?limit={2*n}")
+
     f.write(text)   
 
 
     for i in ports_to_close:
         os.system(f"sudo /sbin/iptables -A DOCKER -p tcp --destination-port {i} -j ACCEPT")
 
-    #for i in range(len(ports_to_close)*2+1):
-    #    os.system(f"sudo /sbin/iptables -D DOCKER 73")
+    for i in range(len(ports_to_close)*2+1):
+        os.system(f"sudo /sbin/iptables -D DOCKER 73")
 
     os.system(f"sudo /sbin/iptables-save")
 
