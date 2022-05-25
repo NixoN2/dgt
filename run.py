@@ -100,7 +100,13 @@ with open(f'results{nodes_to_down}.txt', 'w') as f:
             text += j
 
     f.write(text)   
-
+    
+    f.write("--------------------------------------------\n")
+    f.write(f"date: {today}\n")
+    f.write(f"nodes: 24\n")
+    f.write(f"nodes down: {nodes_to_down}\n")
+    f.write(f"time: {time} seconds\n")
+    f.write("--------------------------------------------\n")
 
     for i in ports_to_close:
         os.system(f"sudo /sbin/iptables -A DOCKER -p tcp --destination-port {i} -j ACCEPT")
