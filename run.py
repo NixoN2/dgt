@@ -76,7 +76,7 @@ with open(f'results{nodes_to_down}.txt', 'w') as f:
     f.write("--------------------------------------------\n")
     f.write(f"date: {today}\n")
     f.write(f"nodes: 24\n")
-    f.write(f"nodes down: 4\n")
+    f.write(f"nodes down: {nodes_to_down}\n")
     f.write(f"time: {time} seconds\n")
     f.write("--------------------------------------------\n")
     f.write(text)   
@@ -98,9 +98,6 @@ with open(f'results{nodes_to_down}.txt', 'w') as f:
             if j.startswith("Execution time"):
                 time += float(j.split()[6])
             text += j
-            
-    text+= "-------------------------------------"
-    text+= os.popen(f"curl -v localhost:8108/blocks?limit={2*n}")
 
     f.write(text)   
 
