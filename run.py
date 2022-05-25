@@ -63,7 +63,7 @@ for i in range(n):
     command = create_command(functions,choice,wallets)
     commands.append(command)
 
-with open(f'results{nodes_to_down}.txt', 'w') as f:
+with open(f'results{nodes_to_down+100}.txt', 'w') as f:
     text = ""
     time = 0
     for i in range(n):
