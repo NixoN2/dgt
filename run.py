@@ -68,6 +68,7 @@ with open(f'results{nodes_to_down}.txt', 'w') as f:
     time = 0
     for i in range(n):
         content = os.popen(commands[i])
+        print(i)
         for j in content.readlines():
             if j.startswith("Execution time"):
                 time += float(j.split()[6])
@@ -94,6 +95,7 @@ with open(f'results{nodes_to_down}.txt', 'w') as f:
     time = 0
     for i in range(n):
         content = os.popen(commands[i])
+        print(i)
         for j in content.readlines():
             if j.startswith("Execution time"):
                 time += float(j.split()[6])
