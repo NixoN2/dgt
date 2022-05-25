@@ -97,9 +97,9 @@ def RemoteClient(hostname, commands):
     for i, command in enumerate(commands):
         print("Executing the Command {i}".format(i=i+1))
         print("Command: {command}".format(command=command))
-        start_time = timeit.default_timer()
+        
         stdin, stdout, stderr = ssh.exec_command(command, get_pty=True)
-        print(f'Execution time of the Command {i+1}: {timeit.default_timer()-start_time} seconds')
+        
         #time.sleep(1)
         print(stdout.read().decode())
         err = stderr.read().decode()
@@ -146,8 +146,9 @@ def Main():
 
     commands = CreateCommands(option.cluster, option.node, option.function, option.number, option.wallet, option.count, option.wallet2)
     #print(commands)
-
+    start_time = timeit.default_timer()
     RemoteClient(hostname, commands)
+    print(f'Execution time of the Command {i+1}: {timeit.default_timer()-start_time} seconds')
 
 if __name__ == '__main__':
     Main()
